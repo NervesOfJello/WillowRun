@@ -8,9 +8,13 @@ public class SimpleInput : MonoBehaviour {
 
     public Vector3 inputDirection;
     public float Speed;
+    private float orginalSpeed = 10;
+
     public Vector3 keyDirection;
+
     public float waterMeter;
-    public float waterRecover = .5f;
+    public float waterRecover = 0.5f;
+    public float mudSlowDown = 0.75f;
     private const float MAXWATERMETER = 100;
 
     // Use this for initialization
@@ -68,6 +72,30 @@ public class SimpleInput : MonoBehaviour {
             }
 
             Debug.Log("Enter Water");
+        }
+    }
+
+    bool isInMud = false;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isInMud)
+        {
+            if (collision.tag == "Mud")
+            {
+                Speed *= mudSlowDown;
+                Debug.Log("Enter Mud");
+                isInMud = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Mud")
+        {
+            this.Speed = this.orginalSpeed;
+            isInMud = false;
+            Debug.Log("Exit Mud");
         }
     }
 }
