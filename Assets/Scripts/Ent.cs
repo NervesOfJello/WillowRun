@@ -6,14 +6,22 @@ using UnityEngine;
 public class Ent : MonoBehaviour {
 
     //Note: this scipt moves whatever it's attached to
+    //movement variables/inputs
     [SerializeField]
     private float BaseSpeed = 10;
+    [SerializeField]
+    private float BoostRatio;
 
     private float Speed;
+    private float SpeedRatio = 1;
+    private float BaseSpeedRatio = 1;
     private float XInput;
     private float YInput;
+    private float BoostInput;
+
     private Rigidbody2D rigidbody2D;
     
+    //water and mud variables
     private float waterMeterLevel;
     [SerializeField]
     private float waterRecoverRate = 0.5f;
@@ -25,10 +33,13 @@ public class Ent : MonoBehaviour {
     [SerializeField]
     private float maxWaterMeter = 100;
 
+    //input strings
     [SerializeField]
     private string HorizontalInputAxis;
     [SerializeField]
     private string VerticalInputAxis;
+    [SerializeField]
+    private string BoostInputAxis;
 
     // Use this for initialization
     void Start()
@@ -41,11 +52,13 @@ public class Ent : MonoBehaviour {
     void Update()
     {
         GetInput();
+        Boost();
     }
 
     private void FixedUpdate()
     {
         Move();
+        
     }
 
     private void GetInput()
@@ -53,12 +66,20 @@ public class Ent : MonoBehaviour {
         //TODO get input from controller
         XInput = Input.GetAxis(HorizontalInputAxis);
         YInput = Input.GetAxis(VerticalInputAxis);
+        BoostInput = Input.GetAxis(BoostInputAxis);
+        Debug.Log("Boost Input: " + BoostInput);
     }
 
     private void Move()
     {
         //TODO move object
+        Speed *= SpeedRatio;
         rigidbody2D.velocity = new Vector2(XInput * Speed, YInput * Speed);
+    }
+
+    private void Boost()
+    {
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)

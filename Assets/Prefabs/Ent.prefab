@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114099674428958262}
   m_Layer: 0
   m_Name: Ent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,12 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7773cf778396aef48a1cb53be7ebafdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseSpeed: 15
+  BaseSpeed: 8
+  BoostRatio: 1.75
   waterRecoverRate: 0.5
   mudSlowDown: 0.25
   maxWaterMeter: 100
   HorizontalInputAxis: Horizontal1
   VerticalInputAxis: Vertical1
+  BoostInputAxis: Boost1
 --- !u!212 &212320155724045468
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -140,7 +142,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 710ac661aed2dde46be7320294eec8df, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
