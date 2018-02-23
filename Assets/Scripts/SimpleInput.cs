@@ -4,7 +4,7 @@ using System.Collections;
 public class SimpleInput : MonoBehaviour {
 
 
-    //Not this scipt moves whatever it's attached to
+    //Note: this scipt moves whatever it's attached to
 
     public Vector3 inputDirection;
     public float Speed;
