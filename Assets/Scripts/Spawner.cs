@@ -5,8 +5,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
+    [SerializeField]
     private float spawnDist = 15;
-    public GameObject [] obstacles;
+    [SerializeField]
+    private float spawnXOffset = 5;
+    private int TopBuffer = -3;
+    private int BottomBuffer = 3;
+
+    [SerializeField]
+    private GameObject [] obstacles;
     private GameObject gameObject;
 
 
@@ -36,18 +43,19 @@ public class Spawner : MonoBehaviour {
         if (Camera.main.transform.position.x - cameraLastPosition >= spawnDist)
         {
             SpawnObject();
-            SpawnObject();
-            SpawnObject();
+            //SpawnObject();
+            //SpawnObject();
             isSpawned = true;
         }
     }
-
+    //NOTE FROM COLE: Added a buffer to the object spawn area so that obstacles only spawn in the play area, not on the background detail
     private void SpawnObject()
     {
         int num = rand.Next(0, 100);
         int cameraEdgeX = rand.Next((int)cameraTopRight.x, (int)cameraBottomRight.x);
-        int cameraEdgeY = rand.Next((int)cameraBottomRight.y, (int)cameraTopRight.y);
-        Vector3 pos = new Vector3(cameraEdgeX, cameraEdgeY);
+        int cameraEdgeY = rand.Next((int)cameraBottomRight.y + BottomBuffer, (int)cameraTopRight.y + TopBuffer);
+
+        Vector3 pos = new Vector3(cameraEdgeX + spawnXOffset, cameraEdgeY);
 
         if (num <= 60)
         {
