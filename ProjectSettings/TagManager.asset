@@ -44,3 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3985426671
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3169334873
+    locked: 0
+  - name: Players
+    uniqueID: 1754245315
+    locked: 0
+  - name: FakeUI
+    uniqueID: 473942079
+    locked: 0

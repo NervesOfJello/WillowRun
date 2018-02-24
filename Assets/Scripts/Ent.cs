@@ -9,20 +9,22 @@ public class Ent : MonoBehaviour {
     //movement variables/inputs
     [SerializeField]
     private float BaseSpeed = 10;
-    [SerializeField]
-    private float BoostRatio;
 
     private float Speed;
-    private float SpeedRatio = 1;
-    private float BaseSpeedRatio = 1;
     private float XInput;
     private float YInput;
     private float BoostInput;
 
     private Rigidbody2D rigidbody2D;
     
-    //water and mud variables
+    //puddle and mud variables
     private float waterMeterLevel;
+
+    public float WaterMeterLevelAsPercentage
+    {
+        get { return waterMeterLevel / maxWaterMeter; }
+    }
+
     [SerializeField]
     private float waterRecoverRate = 0.5f;
     [SerializeField]
@@ -32,6 +34,15 @@ public class Ent : MonoBehaviour {
 
     [SerializeField]
     private float maxWaterMeter = 100;
+
+    //boost variables
+    [SerializeField]
+    private float BoostCost = 10;
+    [SerializeField]
+    private float BoostAmount;
+    [SerializeField]
+    private float BoostCooldownInSeconds = 5;
+    private bool isBoosting = false;
 
     //input strings
     [SerializeField]
@@ -73,13 +84,7 @@ public class Ent : MonoBehaviour {
     private void Move()
     {
         //TODO move object
-        Speed *= SpeedRatio;
         rigidbody2D.velocity = new Vector2(XInput * Speed, YInput * Speed);
-    }
-
-    private void Boost()
-    {
-        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -119,5 +124,24 @@ public class Ent : MonoBehaviour {
             isInMud = false;
             Debug.Log("Exit Mud");
         }
+    }
+
+    private void Boost()
+    {
+        if (!isBoosting && waterMeterLevel >= BoostCost)
+        {
+            if (BoostInput > 0.9)
+            {
+                StartCoroutine(BoostCoroutine());
+            }
+        }
+    }
+
+    IEnumerator BoostCoroutine()
+    {
+            Speed += BoostAmount;
+            waterMeterLevel -= BoostCost;
+            yield return new WaitForSeconds(BoostCooldownInSeconds);
+            Speed = BaseSpeed;
     }
 }
