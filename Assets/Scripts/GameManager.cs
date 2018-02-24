@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     private GameState _gameState;
     private const int GameRounds = 3;
     public Text _WinnerText;
-    public SpeedCoroutine speed;
 
     //used to keep track of the players states
     public List<Ent> Players = new List<Ent>();
