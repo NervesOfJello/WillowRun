@@ -215,7 +215,7 @@ Animator:
   m_GameObject: {fileID: 1519435949095086}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bba3e2da9581aff42a5889ac4a8c289a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -243,7 +243,7 @@ MonoBehaviour:
   BoostCooldownInSeconds: 2
   BoostDurationInSeconds: 0.5
   WhipObject: {fileID: 1519435949095086}
-  WhipCost: 50
+  WhipCost: 40
   WhipSlowdown: 0.25
   WhipSlowdownDuration: 2
   WhipCooldown: 4
@@ -252,6 +252,8 @@ MonoBehaviour:
   VerticalInputAxis: Vertical1
   BoostInputAxis: Boost1
   WhipInputAxis: Whip1
+  WhipAnimator: {fileID: 95492102425683004}
+  EntAnimator: {fileID: 0}
 --- !u!114 &114307646226135030
 MonoBehaviour:
   m_ObjectHideFlags: 1

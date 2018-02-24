@@ -78,6 +78,10 @@ public class Ent : MonoBehaviour
 
     //sprite + animation variables
     private bool isFacingRight = true;
+    [SerializeField]
+    private Animator WhipAnimator;
+    [SerializeField]
+    private Animator EntAnimator;
 
     // Use this for initialization
     void Start()
@@ -107,7 +111,7 @@ public class Ent : MonoBehaviour
 
     private void UpdateAnimationVariables()
     {
-        
+        WhipAnimator.SetBool("IsWhipping", isWhipping);
     }
 
     //gets input from the gamepad each frame, which is passed to the Move() function
@@ -192,8 +196,8 @@ public class Ent : MonoBehaviour
     {
         if (WhipInput > 0 && !isWhipping && waterMeterLevel > WhipCost)
         {
-            isWhipping = true;
             WhipObject.SetActive(true);
+            isWhipping = true;
             waterMeterLevel -= WhipCost;
             StartCoroutine(WhipAttackDurationCoroutine());
             StartCoroutine(WhipCooldownCoroutine());
