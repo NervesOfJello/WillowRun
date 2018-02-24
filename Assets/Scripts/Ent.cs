@@ -61,6 +61,12 @@ public class Ent : MonoBehaviour
     //sprite + animation variables
     private bool isFacingRight = true;
 
+    private int _roundsWon;
+    public int RoundsWon
+    {
+        get { return _roundsWon; }
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -90,7 +96,6 @@ public class Ent : MonoBehaviour
         XInput = Input.GetAxis(HorizontalInputAxis);
         YInput = Input.GetAxis(VerticalInputAxis);
         BoostInput = Input.GetAxis(BoostInputAxis);
-        //Debug.Log("Boost Input: " + BoostInput);
     }
 
     //flips the sprite if it is facing the wrong direction (always keeps the sprite facing the direction of movement)

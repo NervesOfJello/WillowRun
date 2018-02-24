@@ -12,18 +12,22 @@ public class GameManager : MonoBehaviour
     private const int GameRounds = 3;
 
     //used to keep track of the players states
-    public Ent[] Players;
+    public List<Ent> Players = new List<Ent>();
 
     private void Start()
     {
-        _gameState = GameState.Start;
+        _gameState = GameState.Playing;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
-        _gameState = GameState.Playing;
-        CheckPlayersStates();
         Debug.Log("Game State:" + _gameState);
+        CheckPlayersStates();
+        if (_gameState == GameState.Draw || _gameState == GameState.Won)
+        {
+            Debug.Log("Game State:" + _gameState);
+        }
+        
     }
 
     int count;
@@ -33,6 +37,7 @@ public class GameManager : MonoBehaviour
         {
             if(player.PlayerState == PlayerState.Dead)
             {
+                Players.Remove(player);
                 count++;
             }
         }
