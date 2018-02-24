@@ -96,6 +96,7 @@ public class Ent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Player State" + _playerState);
         GetInput();
         Boost();
         Flip();
@@ -143,7 +144,6 @@ public class Ent : MonoBehaviour
     //sets the object's velocity based on its inputs
     private void Move()
     {
-        _playerState = PlayerState.Playing;
         //TODO move object
         rigidbody2D.velocity = new Vector2(XInput * Speed, YInput * Speed);
     }
@@ -151,8 +151,6 @@ public class Ent : MonoBehaviour
     //As long as the object is within a trigger, it checks the tag and takes the corresponding action
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Trigger");
-
         //if the trigger is water, fill up the water meter by the waterRecoverRate
         if (collision.tag == "Water")
         {
