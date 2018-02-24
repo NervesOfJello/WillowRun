@@ -21,6 +21,7 @@ public class Ent : MonoBehaviour
     private float XInput;
     private float YInput;
     private float BoostInput;
+    private float WhipInput;
 
     private new Rigidbody2D rigidbody2D;
     
@@ -50,6 +51,21 @@ public class Ent : MonoBehaviour
     private float BoostDurationInSeconds = 1;
     private bool isBoosting = false;
 
+    //whip Variables
+    [SerializeField]
+    private GameObject WhipObject;
+    [SerializeField]
+    private float WhipCost;
+    [SerializeField]
+    private float WhipSlowdown;
+    [SerializeField]
+    private float WhipSlowdownDuration;
+    [SerializeField]
+    private float WhipCooldown;
+    [SerializeField]
+    private float WhipAttackDuration;
+    private bool isWhipping = false;
+
     //input strings
     [SerializeField]
     private string HorizontalInputAxis;
@@ -57,6 +73,8 @@ public class Ent : MonoBehaviour
     private string VerticalInputAxis;
     [SerializeField]
     private string BoostInputAxis;
+    [SerializeField]
+    private string WhipInputAxis;
 
     //sprite + animation variables
     private bool isFacingRight = true;
@@ -67,6 +85,7 @@ public class Ent : MonoBehaviour
 
         _playerState = PlayerState.Start;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        WhipObject.SetActive(false);
         Speed = BaseSpeed;
     }
 
@@ -81,7 +100,7 @@ public class Ent : MonoBehaviour
     private void FixedUpdate()
     {
         Move();
-        
+        Whip();
     }
 
     //gets input from the gamepad each frame, which is passed to the Move() function
@@ -91,7 +110,7 @@ public class Ent : MonoBehaviour
         XInput = Input.GetAxis(HorizontalInputAxis);
         YInput = Input.GetAxis(VerticalInputAxis);
         BoostInput = Input.GetAxis(BoostInputAxis);
-        Debug.Log("Boost Input: " + BoostInput);
+        WhipInput = Input.GetAxis(WhipInputAxis);
     }
 
     //flips the sprite if it is facing the wrong direction (always keeps the sprite facing the direction of movement)
@@ -146,6 +165,11 @@ public class Ent : MonoBehaviour
                 Debug.Log("Enter Mud");
                 isInMud = true;
             }
+
+            if (collision.tag == "Whip")
+            {
+                StartCoroutine(GotWhippedCoroutine());
+            }
         }
 
         if (collision.tag == "Fire")
@@ -155,6 +179,40 @@ public class Ent : MonoBehaviour
             _playerState = PlayerState.Dead;
             Debug.Log("Enter Fire Wall");
         }
+    }
+
+    private void Whip()
+    {
+        if (WhipInput > 0 && !isWhipping && waterMeterLevel > WhipCost)
+        {
+            isWhipping = true;
+            WhipObject.SetActive(true);
+            waterMeterLevel -= WhipCost;
+            StartCoroutine(WhipAttackDurationCoroutine());
+            StartCoroutine(WhipCooldownCoroutine());
+        }
+
+    }
+
+    //Slowdown for a duration when whipped
+    IEnumerator GotWhippedCoroutine()
+    {
+        Speed *= WhipSlowdown;
+        yield return new WaitForSeconds(WhipSlowdownDuration);
+        Speed = BaseSpeed;
+
+    }
+
+    IEnumerator WhipAttackDurationCoroutine()
+    {
+        yield return new WaitForSeconds(WhipAttackDuration);
+        WhipObject.SetActive(false);
+    }
+
+    IEnumerator WhipCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(WhipCooldown);
+        isWhipping = false;
     }
 
     //if the object leaves a trigger, checks the tage and takes the corresponding action
