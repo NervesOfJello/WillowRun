@@ -275,6 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4098669250265074}
   - component: {fileID: 61795601351075364}
+  - component: {fileID: 114346066837242976}
   m_Layer: 0
   m_Name: Full Wall Of Fire
   m_TagString: Untagged
@@ -289,7 +290,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973093773453838}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.81, y: 2.64, z: 0}
+  m_LocalPosition: {x: -8.33, y: 3.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4336839925878976}
@@ -785,6 +786,22 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114346066837242976
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973093773453838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a4a68831b14ed448f10c37ec22e161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &212005362067802664
 SpriteRenderer:
   m_ObjectHideFlags: 1
