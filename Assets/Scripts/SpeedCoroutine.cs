@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedCoroutine : MonoBehaviour {
+
     private int seconds;
-    public float vectorFloatX;
-    public float vectorFloatY;
+    [SerializeField]
+    private float LevelAcceleration;
+
+    [SerializeField]
+    private float minSpeed;
+    [SerializeField]
+    private float maxSpeed;
     
     public Rigidbody2D rb2; 
 	// Use this for initialization
@@ -16,7 +22,8 @@ public class SpeedCoroutine : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
@@ -27,8 +34,14 @@ public class SpeedCoroutine : MonoBehaviour {
             yield return new WaitForSeconds(1);
             seconds++;
 
-            rb2.velocity = new Vector2((vectorFloatX * seconds), vectorFloatY);
-            
+            if (LevelAcceleration * seconds < minSpeed)
+                rb2.velocity = new Vector2(minSpeed, 0);
+
+            else if (LevelAcceleration * seconds > maxSpeed)
+                rb2.velocity = new Vector2(maxSpeed, 0);
+
+            else
+                rb2.velocity = new Vector2((LevelAcceleration * seconds), 0);
         }
     }
 }
