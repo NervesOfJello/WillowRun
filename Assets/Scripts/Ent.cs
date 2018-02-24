@@ -64,7 +64,6 @@ public class Ent : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         _playerState = PlayerState.Start;
         rigidbody2D = GetComponent<Rigidbody2D>();
         Speed = BaseSpeed;
@@ -91,7 +90,7 @@ public class Ent : MonoBehaviour
         XInput = Input.GetAxis(HorizontalInputAxis);
         YInput = Input.GetAxis(VerticalInputAxis);
         BoostInput = Input.GetAxis(BoostInputAxis);
-        Debug.Log("Boost Input: " + BoostInput);
+        //Debug.Log("Boost Input: " + BoostInput);
     }
 
     //flips the sprite if it is facing the wrong direction (always keeps the sprite facing the direction of movement)
@@ -112,7 +111,10 @@ public class Ent : MonoBehaviour
     //sets the object's velocity based on its inputs
     private void Move()
     {
-        _playerState = PlayerState.Playing;
+        if (_playerState != PlayerState.Dead)
+        {
+            _playerState = PlayerState.Playing;
+        }
         //TODO move object
         rigidbody2D.velocity = new Vector2(XInput * Speed, YInput * Speed);
     }
@@ -120,7 +122,7 @@ public class Ent : MonoBehaviour
     //As long as the object is within a trigger, it checks the tag and takes the corresponding action
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Trigger");
+        //Debug.Log("Trigger");
 
         //if the trigger is water, fill up the water meter by the waterRecoverRate
         if (collision.tag == "Water")
