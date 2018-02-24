@@ -65,6 +65,7 @@ public class Ent : MonoBehaviour
     public int RoundsWon
     {
         get { return _roundsWon; }
+        set { _roundsWon += value; }
     }
 
     // Use this for initialization
