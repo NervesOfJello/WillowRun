@@ -53,6 +53,9 @@ TagManager:
   - name: Players
     uniqueID: 1754245315
     locked: 0
-  - name: FakeUI
+  - name: FakeUIBottom
     uniqueID: 473942079
+    locked: 0
+  - name: FakeUITop
+    uniqueID: 4279179791
     locked: 0
