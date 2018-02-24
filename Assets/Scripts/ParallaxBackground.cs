@@ -55,9 +55,9 @@ public class ParallaxBackground : MonoBehaviour {
     {
         //int lastLeft = leftIndex;
 
-        Debug.Log("before move" + layers[leftIndex].position);
+        //Debug.Log("before move" + layers[leftIndex].position);
         layers[leftIndex].position = Vector3.right * (layers[rightIndex].position.x + backgroundSize);
-        Debug.Log("after move" + layers[leftIndex].position);
+        //Debug.Log("after move" + layers[leftIndex].position);
         rightIndex = leftIndex;
         leftIndex++;
         if (leftIndex == layers.Length)
