@@ -116,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1248104963497132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.26, y: 0.09, z: 0}
+  m_LocalPosition: {x: 0, y: 2.86, z: 0}
   m_LocalScale: {x: 2.1646638, y: 2.164664, z: 4.560077}
   m_Children:
   - {fileID: 4382852996464312}
@@ -258,7 +258,7 @@ MonoBehaviour:
   maxWaterMeter: 100
   BoostCost: 25
   BoostAmount: 4
-  BoostCooldownInSeconds: 2
+  BoostCooldownInSeconds: 1.25
   BoostDurationInSeconds: 0.5
   WhipObject: {fileID: 1519435949095086}
   WhipCost: 40
