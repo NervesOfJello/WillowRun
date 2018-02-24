@@ -112,6 +112,7 @@ public class Ent : MonoBehaviour
     private void UpdateAnimationVariables()
     {
         WhipAnimator.SetBool("IsWhipping", isWhipping);
+        EntAnimator.SetFloat("HorizontalSpeed", Mathf.Abs(rigidbody2D.velocity.x));
     }
 
     //gets input from the gamepad each frame, which is passed to the Move() function

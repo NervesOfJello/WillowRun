@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 50890073934900568}
   - component: {fileID: 61921388491903668}
   - component: {fileID: 114151041044109380}
+  - component: {fileID: 95491980754704058}
   m_Layer: 0
   m_Name: Ent1
   m_TagString: Player
@@ -206,6 +207,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27665812, y: 0.5271454}
   m_EdgeRadius: 0
+--- !u!95 &95491980754704058
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1248104963497132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c0cde2fc07a460845b0a1d3f9b9b40a3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95492102425683004
 Animator:
   serializedVersion: 3
@@ -253,7 +271,7 @@ MonoBehaviour:
   BoostInputAxis: Boost1
   WhipInputAxis: Whip1
   WhipAnimator: {fileID: 95492102425683004}
-  EntAnimator: {fileID: 0}
+  EntAnimator: {fileID: 95491980754704058}
 --- !u!114 &114307646226135030
 MonoBehaviour:
   m_ObjectHideFlags: 1
