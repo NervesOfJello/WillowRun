@@ -95,12 +95,19 @@ public class Ent : MonoBehaviour
         GetInput();
         Boost();
         Flip();
+        UpdateAnimationVariables();
     }
+
     //called once per physics calculation
     private void FixedUpdate()
     {
         Move();
         Whip();
+    }
+
+    private void UpdateAnimationVariables()
+    {
+        
     }
 
     //gets input from the gamepad each frame, which is passed to the Move() function

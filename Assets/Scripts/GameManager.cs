@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 
         if (count == 3)
         {
-            Players[0].RoundsWon++;
+            //Players[0].RoundsWon++;
             Debug.Log("Player" + Players[0].name);
             _gameState = GameState.Won;
         }
