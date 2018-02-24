@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum GameState { Start, Playing, Won, Navagiting, Draw}
 
@@ -50,8 +51,9 @@ public class GameManager : MonoBehaviour
         {
             //Players[0].RoundsWon++;
             Debug.Log("Player" + Players[0].name);
-            _WinnerText.text = string.Format("The Winner is: " + Players[0].name);
+            _WinnerText.text = string.Format("The Winner is: \n" + Players[0].name);
             _gameState = GameState.Won;
+            StartCoroutine(EndWait());
         }
         else if(count == 4)
         {
@@ -63,5 +65,12 @@ public class GameManager : MonoBehaviour
             _WinnerText.text = string.Format("The Winner is: " + Players[0].name);
             _gameState = GameState.Won;
         }
+    }
+
+    IEnumerator EndWait()
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("Credits");
+        
     }
 }
