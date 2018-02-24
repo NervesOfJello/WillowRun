@@ -3,7 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ent : MonoBehaviour {
+
+public enum PlayerState { Start, Playing, Dead}
+public class Ent : MonoBehaviour
+{
+
+    private PlayerState _playerState;
+    public PlayerState PlayerState
+    {
+        get { return _playerState; }
+    }
 
     //Note: this scipt moves whatever it's attached to
     //movement variables/inputs
@@ -55,6 +64,7 @@ public class Ent : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        _playerState = PlayerState.Start;
         rigidbody2D = GetComponent<Rigidbody2D>();
         Speed = BaseSpeed;
     }
@@ -78,11 +88,12 @@ public class Ent : MonoBehaviour {
         XInput = Input.GetAxis(HorizontalInputAxis);
         YInput = Input.GetAxis(VerticalInputAxis);
         BoostInput = Input.GetAxis(BoostInputAxis);
-        Debug.Log("Boost Input: " + BoostInput);
+        //Debug.Log("Boost Input: " + BoostInput);
     }
 
     private void Move()
     {
+        _playerState = PlayerState.Playing;
         //TODO move object
         rigidbody2D.velocity = new Vector2(XInput * Speed, YInput * Speed);
     }
@@ -114,6 +125,14 @@ public class Ent : MonoBehaviour {
                 isInMud = true;
             }
         }
+
+        if (collision.tag == "Fire")
+        {
+            //Stops player from moving altogether 
+            Speed = BaseSpeed = 0;
+            _playerState = PlayerState.Dead;
+            Debug.Log("Enter Fire Wall");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -139,9 +158,9 @@ public class Ent : MonoBehaviour {
 
     IEnumerator BoostCoroutine()
     {
-            Speed += BoostAmount;
-            waterMeterLevel -= BoostCost;
-            yield return new WaitForSeconds(BoostCooldownInSeconds);
-            Speed = BaseSpeed;
+        Speed += BoostAmount;
+        yield return new WaitForSeconds(BoostCooldownInSeconds);
+        waterMeterLevel -= BoostCost;
+        Speed = BaseSpeed;
     }
 }
