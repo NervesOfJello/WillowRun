@@ -43,8 +43,6 @@ public class Spawner : MonoBehaviour {
         if (Camera.main.transform.position.x - cameraLastPosition >= spawnDist)
         {
             SpawnObject();
-            //SpawnObject();
-            //SpawnObject();
             isSpawned = true;
         }
     }
@@ -57,13 +55,30 @@ public class Spawner : MonoBehaviour {
 
         Vector3 pos = new Vector3(cameraEdgeX + spawnXOffset, cameraEdgeY);
 
-        if (num <= 60)
+
+        if (num < 17)
         {
             gameObject = Instantiate(obstacles[0], pos, Quaternion.identity, this.transform);
         }
-        else
+        else if(num < 34)
         {
             gameObject = Instantiate(obstacles[1], pos, Quaternion.identity, this.transform);
+        }
+        else if (num < 51)
+        {
+            gameObject = Instantiate(obstacles[2], pos, Quaternion.identity, this.transform);
+        }
+        else if (num < 68)
+        {
+            gameObject = Instantiate(obstacles[3], pos, Quaternion.identity, this.transform);
+        }
+        else if (num < 85)
+        {
+            gameObject = Instantiate(obstacles[4], pos, Quaternion.identity, this.transform);
+        }
+        else
+        {
+            gameObject = Instantiate(obstacles[5], pos, Quaternion.identity, this.transform);
         }
 
         //Destroys object 8 seconds after it spawns
