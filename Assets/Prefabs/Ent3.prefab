@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 50776355634770538}
   - component: {fileID: 61151086417966314}
   - component: {fileID: 114095617425893020}
+  - component: {fileID: 95742673206141572}
   m_Layer: 0
   m_Name: Ent3
   m_TagString: Player
@@ -206,6 +207,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.94, y: 0.55}
   m_EdgeRadius: 0
+--- !u!95 &95742673206141572
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1907448218214140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1811c6c7dc1ef62419c41c92b19c7d4b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95792636250670380
 Animator:
   serializedVersion: 3
@@ -215,7 +233,7 @@ Animator:
   m_GameObject: {fileID: 1518741482019308}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bba3e2da9581aff42a5889ac4a8c289a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -252,6 +270,8 @@ MonoBehaviour:
   VerticalInputAxis: Vertical3
   BoostInputAxis: Boost3
   WhipInputAxis: Whip3
+  WhipAnimator: {fileID: 95792636250670380}
+  EntAnimator: {fileID: 95742673206141572}
 --- !u!114 &114478355569360182
 MonoBehaviour:
   m_ObjectHideFlags: 1
